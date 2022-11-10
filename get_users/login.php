@@ -4,12 +4,13 @@
 if(isset($_POST['submit'])) {
     $user_name = $_POST["user_name"];
     $password = $_POST["password"];
+    // Instantiate classes
+    include "../classes/users.class.php";
+    include "../controler/metode.php";
     
     $data = ['user_name', 'password'];
 
-    // Instantiate classes
-    include "../classes/user.login.php";
-    include "../controler/login.php";
+
     $result = getUser($data);
     
     $userLogin = new Users();
@@ -17,10 +18,10 @@ if(isset($_POST['submit'])) {
 
     if($result != null) {
         set_session($result);
-        header("../index.php?wel=welcome");
+        header('location:../index.php?wel=welcome');
     }
     else {
-        header("../signin.php?login=failed");
+        header('location:../singin.php?login=failed');
     }
 }
 

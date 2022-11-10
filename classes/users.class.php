@@ -9,12 +9,12 @@ class Users extends Dbc {
 
 		if(count($data)){
 			$query .= " WHERE ";
-			foreach($data as $column => $value){
-				$query .= " {$column}='{$value}' AND ";
+			foreach($data as $col => $val){
+				$query .= " {$col}='{$val}' AND ";
 			}
 			$query = trim($query, ' AND ');
 		}
-		$result = $this->connection->query($query);
+		$result = $this->connection()->query($query);
 
 		if($one_user){
 			return $result->fetch_assoc();
@@ -27,18 +27,19 @@ class Users extends Dbc {
     // Insert User
 	public function insert($data){
 		
-		$column = '';
-		$value = "";
+		$col = "";
+		$val = "";
 
-		foreach ($data as $column => $value) {
-			$column .= " {$column}, ";
-			$value .= "'{$value}', ";
+		foreach ($data as $col => $val) {
+			$col .= " {$col}, ";
+			$val .= "'{$val}', ";
 		}
-		$column = trim($column, ', ');
-		$value = trim($value, ', ');
-		$query = " INSERT INTO {$this->table_name} ( $column ) VALUES ($value) ";
-		$this->connection->query($query);
-		return $this->connection->insert_id;
+		$col = trim($col, ', ');
+		$val = trim($val, ', ');
+		$query = " INSERT INTO {$this->table_name} ( $col ) VALUES ($val) ";
+		$result2 = $this->connection()->query($query);
+		return $result2;
+		
 
 	}
 

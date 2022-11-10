@@ -48,11 +48,7 @@
             </div>
 
         </form>
-            <!-- the button for logout the manager -->
-        <!-- <form method="POST" action="session_destroy.php">
-            <input type="submit" class="btn-logout" value="Log me out" name="submit">
-        </form> -->
-            <!-- php class object -->
+  
     </div>
     <!-- end form -->
 

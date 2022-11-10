@@ -15,7 +15,7 @@
             <form action="get_users/login.php" method="POST" enctype="multipart/form-data">
             <h1>Welcome dear customer</h1>
             <div class="input-el">
-                <input type="number" min="0"  class="input-feild" name="user-name" id="user-name" placeholder="User Name" required>
+                <input type="text" class="input-feild" name="user_name" id="user_name" placeholder="User Name" required>
             </div>
             <div class="input-el">
                 <input type="password" class="input-feild" name="password" id="password" placeholder="Password" required>
@@ -26,6 +26,10 @@
 
         </form>
     <!-- end form -->
+              <!-- the button for logout the manager -->
+        <form method="POST" action="get_users/session_unset.php">
+            <input type="submit" class="btn-submit input-feild" value="Log me out" name="submit">
+        </form>
 
    
 </body>
