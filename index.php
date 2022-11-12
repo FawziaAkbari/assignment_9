@@ -23,8 +23,10 @@
 
         <main class="main-section">
             <?php
+
              if(isset($_GET['wel'])){
-                echo "<h5 class='title'>Welcome ". $_SESSION['user']['user_name']."</h5>";
+                session_start();
+                echo "<h6>Welcome dear customer!</h6>";
             }
         
             ?>

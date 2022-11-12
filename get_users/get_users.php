@@ -10,16 +10,23 @@ if(isset($_POST['submit'])) {
     $password = $_POST["password"];
     $confirm = $_POST["confirm"];
 
-	$names = [
-		'name', 'last_name', 'user_name','address', 'email', 'password','confirm'
-	];
-
-    include "../classes/users.class.php";
+	$user_data = [
+        'first_name' ,  'last_name',  'user_name', 'address',  'email', 'password' ,'confirm'
+    ];
+    
+    // Instantiate classes
+    include "../classes/setUser.class.php";
     include "../controler/metode.php";
 
-	$data = getUser($names);
-	// $data['password'] = md5($data['password']);
-	$setUser = new Users();
+	$data = get_user_data($user_data);
+    
+	$setUser = new SetUser();
 	$user = $setUser->insert($data);
-}
+    if($user) {
+        header("location: ../index.php?wel=welcome");
+    }
+    else {
+        echo "Your entry failed!";
+    }
+ }
 

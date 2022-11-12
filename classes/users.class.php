@@ -1,7 +1,7 @@
 <?php
 include 'dbc.class.php';
 class Users extends Dbc {
-	protected $table_name = 'users';
+	protected $table_name = '';
 	
     // Select User
 	public function select($data = [], $one_user = false){
@@ -10,7 +10,7 @@ class Users extends Dbc {
 		if(count($data)){
 			$query .= " WHERE ";
 			foreach($data as $col => $val){
-				$query .= " {$col}='{$val}' AND ";
+				$query .= " {$col} ='{$val}' AND ";
 			}
 			$query = trim($query, ' AND ');
 		}
@@ -27,19 +27,21 @@ class Users extends Dbc {
     // Insert User
 	public function insert($data){
 		
-		$col = "";
-		$val = "";
+		$column_data_ = '';
+		$values = "";
 
-		foreach ($data as $col => $val) {
-			$col .= " {$col}, ";
-			$val .= "'{$val}', ";
+		foreach ($data as $column => $val) {
+			$column_data_ .= " {$column}, ";
+			$values .= "'{$val}', ";
 		}
-		$col = trim($col, ', ');
-		$val = trim($val, ', ');
-		$query = " INSERT INTO {$this->table_name} ( $col ) VALUES ($val) ";
-		$result2 = $this->connection()->query($query);
-		return $result2;
-		
+
+		$column_data_ = trim($column_data_, ', ');
+		$values = trim($values, ', ');
+
+		$query = " INSERT INTO {$this->table_name} ( $column_data_ ) VALUES ($values) ";
+
+		$user = $this->connection()->query($query);
+		return $user;
 
 	}
 
